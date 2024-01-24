@@ -1,0 +1,57 @@
+/* Board Style */
+/* Board Style */
+#board {
+    background-color: #FFFFFF;
+    width: 300px;
+    height: 300px;
+    border: 2px solid #000000;
+    display: grid;
+    grid-template-columns: 100px 100px 100px; /* Define the width of each column */
+    grid-gap: 4px;
+}
+
+
+/* Cell Style */
+.cell {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 24px;
+    font-weight: bold;
+    border: 1px solid #000000;
+}
+
+/* Player X Style */
+.cell.playerX {
+    background-color: #FF5733; /* Choose your color */
+    color: #FFFFFF; /* Text color */
+}
+
+/* Player O Style */
+.cell.playerO {
+    background-color: #33FF57; /* Choose your color */
+    color: #000000; /* Text color */
+}
+
+/* Winning Cell Style (You can modify this for highlighting winning cells) */
+.cell.winner {
+    background-color: #FFFF00; /* Choose your color */
+    color: #000000; /* Text color */
+}
+
+/* Button Style (for resetting the game) */
+#reset-button {
+    margin-top: 10px;
+    background-color: #333333;
+    color: #FFFFFF;
+    font-size: 16px;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Button Hover Effect */
+#reset-button:hover {
+    background-color: #555555;
+}

@@ -5,25 +5,18 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Locale;
 import java.util.Optional;
 
 public class AgainstPcCont {
+    static int counter=0;
     static char player = 'x';
-
+    static char[] arr;
+    static int[][] winCases = {{0, 1, 2},/*row1*/{3, 4, 5},/*row2*/{6, 7, 8},/*row3*/{0, 3, 6},/*column1*/{1, 4, 7},/*column2*/{2, 5, 8},/*column3*/{0, 4, 8},/*diagonal1*/{2, 4, 6}/*diagonal2*/};
     public static Button[] buttons = new Button[9];
-
     public Button button00;
     public Button button01;
     public Button button02;
@@ -63,6 +56,7 @@ public class AgainstPcCont {
 //        btnEasy=new Button();
 //        btnMedium=new Button();
 //        btnAdvanced=new Button();
+        arr = new char[9];
 
 
         btnEasy.setDisable(true);
@@ -159,25 +153,25 @@ public class AgainstPcCont {
         if (plyr.equalsIgnoreCase(X_O)) {//user is starting
             System.out.println("user is starting");
 
-
             try {
                 Main.ShowBoard();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            if (player == 'o') {
-                int r = (int) (Math.random() * 9);
-                buttons[r].setText("X");
-                buttons[r].setStyle("-fx-text-fill:  White; -fx-font-family: 'Bell MT'; -fx-font-size: 45; -fx-background-color: Transparent;-fx-border-width: 4;-fx-border-color:  #f8d320");
-
+//            if (player == 'o') {
 //                int r = (int) (Math.random() * 9);
-//                buttons[r].setText("O");
+//                buttons[r].setText("X");
 //                buttons[r].setStyle("-fx-text-fill:  White; -fx-font-family: 'Bell MT'; -fx-font-size: 45; -fx-background-color: Transparent;-fx-border-width: 4;-fx-border-color:  #f8d320");
-
-            }
+//
+////                int r = (int) (Math.random() * 9);
+////                buttons[r].setText("O");
+////                buttons[r].setStyle("-fx-text-fill:  White; -fx-font-family: 'Bell MT'; -fx-font-size: 45; -fx-background-color: Transparent;-fx-border-width: 4;-fx-border-color:  #f8d320");
+//
+//            }
             for (int i = 0; i < buttons.length; i++) {
                 buttons[i].setText("");
             }
+
             for (int i = 0; i < buttons.length; i++) {
 
                 Button temp = buttons[i];
@@ -192,7 +186,7 @@ public class AgainstPcCont {
                                 alert.setContentText("Player " + Won(buttons) + " Wins!");
                                 alert.showAndWait();
                             } else {
-                                if (GameNotFinished()) {
+                                if (!boardIsFull()) {
                                     ComputerPlay.MODE = "Expert";
                                     int l = ComputerPlay.MakeMove(getBoard());
                                     System.out.println(l);
@@ -229,23 +223,27 @@ public class AgainstPcCont {
                 pcSymbol = 'X';
             }
 
+            ComputerPlay.MODE = "Expert";
+            int firstMove = ComputerPlay.MakeMove(getBoard());
+            System.out.println(firstMove);
+            buttons[firstMove].setText((player == 'x' ? 'O' : 'X') + "");
+            buttons[firstMove].setStyle("-fx-text-fill: White; -fx-font-family: 'Bell MT'; -fx-font-size: 45; -fx-background-color: Transparent;-fx-border-width: 4;-fx-border-color:  #f8d320");
+
+
 //            ComputerPlay.MODE = "Expert";
 //            int l = ComputerPlay.MakeMove(getBoard());
 //            System.out.println(l);
 //            buttons[l].setText((player == 'x' ? 'O' : 'X') + "");
 //            buttons[l].setStyle("-fx-text-fill: White; -fx-font-family: 'Bell MT'; -fx-font-size: 45; -fx-background-color: Transparent;-fx-border-width: 4;-fx-border-color:  #f8d320");
-
-            int randomMove = (int) (Math.random() * 9);
 //            int firstL = randomMove;
-            System.out.println(randomMove);// l is the number of the block that pc has chosen
-
-//                                    buttons[l].setText((player == 'x' ? 'O' : 'X') + "");
-            System.out.println("pc isssssssssssss:" + pcSymbol);
+            //                                    buttons[l].setText((player == 'x' ? 'O' : 'X') + "");
 //            System.out.println("second"+ (player == 'x' ? 'O' : 'X'));
-            buttons[randomMove].setText(pcSymbol + "");
-            buttons[randomMove].setStyle("-fx-text-fill: White; -fx-font-family: 'Bell MT'; -fx-font-size: 45; -fx-background-color: Transparent;-fx-border-width: 4;-fx-border-color:  #f8d320");
 
-
+//            int randomMove = (int) (Math.random() * 9);
+//            System.out.println(randomMove);// l is the number of the block that pc has chosen
+//            System.out.println("pc isssssssssssss:" + pcSymbol);
+//            buttons[randomMove].setText(pcSymbol + "");
+//            buttons[randomMove].setStyle("-fx-text-fill: White; -fx-font-family: 'Bell MT'; -fx-font-size: 45; -fx-background-color: Transparent;-fx-border-width: 4;-fx-border-color:  #f8d320");
 
 
 //            if (player == 'o') {
@@ -270,7 +268,7 @@ public class AgainstPcCont {
                                 alert.setContentText("Player " + Won(buttons) + " Wins!");
                                 alert.showAndWait();
                             } else {
-                                if (GameNotFinished()) {
+                                if (!boardIsFull()) {
                                     ComputerPlay.MODE = "Expert";
                                     int l = ComputerPlay.MakeMove(getBoard());
                                     System.out.println(l);
@@ -341,7 +339,7 @@ public class AgainstPcCont {
 
 
                                 ///////////////////////////////////////////////
-                                if (GameNotFinished()) {
+                                if (!boardIsFull()) {
                                     System.out.println("....");
 
                                     int randomMove = (int) (Math.random() * 9);
@@ -403,7 +401,6 @@ public class AgainstPcCont {
                 buttons[r].setStyle("-fx-text-fill:  White; -fx-font-family: 'Bell MT'; -fx-font-size: 45; -fx-background-color: Transparent;-fx-border-width: 4;-fx-border-color:  #f8d320");
             }
 
-
             for (int i = 0; i < buttons.length; i++) {
                 Button temp = buttons[i];
                 temp.setOnAction(event -> {
@@ -422,7 +419,7 @@ public class AgainstPcCont {
 
 
                                 ///////////////////////////////////////////////
-                                if (GameNotFinished()) {
+                                if (!boardIsFull()) {
                                     System.out.println("....");
 
                                     int randomMove = (int) (Math.random() * 9);
@@ -454,9 +451,7 @@ public class AgainstPcCont {
                 });
             }
 
-
         }
-
 
     }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -639,50 +634,64 @@ public class AgainstPcCont {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-    private boolean GameNotFinished() {
+    private boolean boardIsFull() {//was GameNotFinished
 
         for (int i = 0; i < buttons.length; i++) {
-            if (buttons[i].getText().equals(""))
-                return true;
+            if (buttons[i].getText().equals("X") || buttons[i].getText().equals("O")) {
+                return false;
+            }
+
         }
-        return false;
+        return true;
     }
 
 
     private char Won(Button[] buttons) {
-        int[][] Cases = {
-                {0, 1, 2},
-                {3, 4, 5},
-                {6, 7, 8},
-                {0, 3, 6},
-                {1, 4, 7},
-                {2, 5, 8},
-                {0, 4, 8},
-                {2, 4, 6}
-        };
+        //checking if somebody won                              {'x' or 'o'}
+        //or the game is over with nobody winning (tie(Draw))   {'t'}
+        //or the game is not over yet (null(no winner yet))     {'n'}
 
-        for (int j = 0; j < Cases.length; j++) {
-            int a = Cases[j][0];
-            int b = Cases[j][1];
-            int c = Cases[j][2];
+
+            /*
+            |  0,0  |  0,1  |  0,2  |
+            |-------|-------|-------|
+            |  1,0  |  1,1  |  1,2  |
+            |-------|-------|-------|
+            |  2,0  |  2,1  |  2,2  |
+            */
+
+        for (int j = 0; j < winCases.length; j++) {
+            int a = winCases[j][0];
+            int b = winCases[j][1];
+            int c = winCases[j][2];
             if (buttons[a].getText().equals("") || buttons[b].getText().equals("") || buttons[c].getText().equals(""))
                 continue;
             if (!buttons[a].getText().equals("") && buttons[a].getText().charAt(0) == buttons[b].getText().charAt(0) && buttons[a].getText().charAt(0) == buttons[c].getText().charAt(0)) {
                 return buttons[a].getText().charAt(0);
             }
         }
-        return 'n';
+        //n(still no winner) or x or o
+        char result;
+        if (boardIsFull()) {
+            result = 't';//tie    (Draw)
+        } else {
+            result = 'n';//null    (no winner yet)
+        }
+        return result;
     }
 
 
     private char[] getBoard() {
-        char[] arr = new char[9];
+        counter++;
+//        char[] arr = new char[9];
+//        arr = new char[9];
+        System.out.println("method called for the #"+counter+" time");
         for (int i = 0; i < arr.length; i++) {
-            if (buttons[i].getText().equals(""))
+            if (buttons[i].getText().equals("")) {
                 arr[i] = '.';
-            else
+            } else {
                 arr[i] = buttons[i].getText().toLowerCase(Locale.ROOT).charAt(0);
-
+            }
             System.out.println(arr[i]);
         }
 
