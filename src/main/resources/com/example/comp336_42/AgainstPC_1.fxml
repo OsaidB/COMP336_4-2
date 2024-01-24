@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="711.0" prefWidth="687.0" style="-fx-background-color: #212845;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.comp336_42.Controller">
+	<children>
+		<ImageView fitHeight="308.0" fitWidth="267.0" layoutX="-14.0" layoutY="-39.0">
+			<image>
+				<Image url="@images/x.png" />
+			</image>
+		</ImageView>
+		<ImageView fitHeight="283.0" fitWidth="274.0" layoutX="413.0" layoutY="428.0">
+			<image>
+				<Image url="@images/O.png" />
+			</image>
+		</ImageView>
+		<Label layoutX="206.0" layoutY="215.0" text="Tic Tac Toe" textFill="WHITE">
+			<font>
+				<Font name="Britannic Bold" size="55.0" />
+			</font>
+		</Label>
+		<Button layoutX="184.0" layoutY="308.0" mnemonicParsing="false" onAction="#WhoStartX" prefHeight="74.0" prefWidth="319.0" style="-fx-background-color: #f8d320;" text="Play as X">
+			<font>
+				<Font name="Calibri Bold" size="28.0" />
+			</font>
+		</Button>
+		<Button layoutX="183.0" layoutY="408.0" mnemonicParsing="false" onAction="#WhoStartO" prefHeight="74.0" prefWidth="319.0" style="-fx-background-color: #f8d320;" text="Play as O">
+			<font>
+				<Font name="Calibri Bold" size="28.0" />
+			</font>
+		</Button>
+
+	</children>
+</AnchorPane>
