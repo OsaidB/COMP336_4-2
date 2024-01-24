@@ -1,3 +1,5 @@
+package com.example.comp336_42;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,40 +9,36 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Main extends Application {
-public static Stage GameStage = new Stage();
+public static Stage primaryStage;
 	public static void main(String[] args) {
 		Application.launch(args);
-	}
-
-	public static void ShowBoard() throws IOException {
-		FXMLLoader loader = new FXMLLoader(Main.class.getResource("boardGamePlay.fxml"));
-		Parent root = loader.load();
-		GameStage.setScene(new Scene(root));
-	}
-
-	public static void ShowMulti() throws IOException {
-		FXMLLoader loader = new FXMLLoader(Main.class.getResource("Names.fxml"));
-		Parent root = loader.load();
-		GameStage.setScene(new Scene(root));
-	}
-
-	public static void SwitchToWhoStart() throws IOException {
-		FXMLLoader loader = new FXMLLoader(Main.class.getResource("WhoStart.fxml"));
-		Parent root = loader.load();
-		GameStage.setScene(new Scene(root));
 	}
 
 	@Override
 	public void start(Stage stage) throws Exception {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Main.fxml"));
 		Parent root = loader.load();
-		GameStage.setScene(new Scene(root));
-		GameStage.show();
+		primaryStage =new Stage();
+		primaryStage.setScene(new Scene(root));
+		primaryStage.show();
 	}
 
-	public static void SwitchToLevelsScene() throws IOException {
-		FXMLLoader loader = new FXMLLoader(Main.class.getResource("Levels.fxml"));
+
+	public static void ShowBoard() throws IOException {
+		FXMLLoader loader = new FXMLLoader(Main.class.getResource("boardGamePlay.fxml"));
 		Parent root = loader.load();
-		GameStage.setScene(new Scene(root));
+		primaryStage.setScene(new Scene(root));
+	}
+
+
+
+
+
+
+
+	public static void SwitchToLevelsScene() throws IOException {
+		FXMLLoader loader = new FXMLLoader(Main.class.getResource("AgainstPC_2.fxml"));
+		Parent root = loader.load();
+		primaryStage.setScene(new Scene(root));
 	}
 }

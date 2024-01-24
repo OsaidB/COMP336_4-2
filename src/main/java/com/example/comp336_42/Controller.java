@@ -1,3 +1,8 @@
+package com.example.comp336_42;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
@@ -26,6 +31,14 @@ public class Controller implements Initializable {
 	public TextField play1;
 	public TextArea play2;
 	public Button startb;
+
+
+
+
+
+
+
+
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -138,6 +151,7 @@ public class Controller implements Initializable {
 	}
 
 	private boolean GameNotFinished() {
+
 		for (int i = 0; i < buttons.length; i++) {
 			if (buttons[i].getText().equals(""))
 				return true;
@@ -193,14 +207,7 @@ public class Controller implements Initializable {
 		}
 	}
 
-	public void OpenMultiplayerScene() {
-		try {
-			Main.ShowMulti();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 
-	}
 
 	public void OnStartMulti() {
 		try {
@@ -249,13 +256,7 @@ public class Controller implements Initializable {
 		player = 'o';
 		LevelsScene();
 	}
-	public void WhoStart() {
-		try {
-			Main.SwitchToWhoStart();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+
 
 }
 
