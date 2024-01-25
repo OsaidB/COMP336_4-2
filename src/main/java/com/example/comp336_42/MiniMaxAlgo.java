@@ -5,9 +5,11 @@ import static com.example.comp336_42.AgainstPcCont.pc;
 
 public class MiniMaxAlgo {
     static char[] board;
+    static int[] bestMoves;
 
     public static int makeAMove(char[] board) {
         MiniMaxAlgo.board = board;
+        bestMoves = new int[9];
         return getBestMove();
     }
 
@@ -15,22 +17,17 @@ public class MiniMaxAlgo {
         int bestScore = -999;
         int bestMove = -1;
 
-//        if(player==)
-
-
         for (int i = 0; i < board.length; i++) {//getting all possible moves { 6, 7, 9}
-//            System.out.println(board);
 
             if (board[i] == '.') {// is the spot available?
-//                System.out.println("inside if (board[i] == '.') {} (getBestMove)");
                 board[i] = pc;
-//                int score = MiniMax(board, (pc == 'x' ? 'o' : 'x'), 0);
 
                 int score = miniMax(user);
                 board[i] = '.';
                 if (score > bestScore) {
                     bestScore = score;
                     bestMove = i;
+                    bestMoves[i]=bestMove;
                 }
             }
         }

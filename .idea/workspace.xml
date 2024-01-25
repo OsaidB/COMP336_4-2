@@ -4,19 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="53f9d1bf-71df-43ec-b68d-bb79ab58adb4" name="Changes" comment="battle">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/comp336_42/MiniMaxAlgo.java" afterDir="false" />
+    <list default="true" id="53f9d1bf-71df-43ec-b68d-bb79ab58adb4" name="Changes" comment="still">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/comp336_42/Board.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/comp336_42/AgainstPcCont.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/comp336_42/AgainstPcCont.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/comp336_42/ComputerPlay.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/comp336_42/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/comp336_42/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/comp336_42/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/comp336_42/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/comp336_42/MainCont.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/comp336_42/MainCont.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/comp336_42/AgainstFriend_1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/comp336_42/AgainstFriend.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/comp336_42/AgainstPC_1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/toDelete/AgainstPC_1.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/comp336_42/AgainstPC_2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/comp336_42/AgainstPC.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/comp336_42/boardGamePlay.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/comp336_42/boardGamePlay.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/comp336_42/MiniMaxAlgo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/comp336_42/MiniMaxAlgo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/comp336_42/AgainstFriend.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/comp336_42/AgainstFriend.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/comp336_42/AgainstPC.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/comp336_42/AgainstPC.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/comp336_42/Main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/comp336_42/Main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/comp336_42/boardGamePlay.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/comp336_42/myStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/comp336_42/myStyle.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,6 +109,8 @@
       <workItem from="1705824278882" duration="60451000" />
       <workItem from="1706104894352" duration="23600000" />
       <workItem from="1706133043481" duration="11085000" />
+      <workItem from="1706145965699" duration="134000" />
+      <workItem from="1706176211346" duration="6058000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1706083189534</created>
@@ -125,7 +126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706119771537</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="still">
+      <created>1706146016874</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1706146016874</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -134,7 +142,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first" />
     <MESSAGE value="battle" />
-    <option name="LAST_COMMIT_MESSAGE" value="battle" />
+    <MESSAGE value="still" />
+    <option name="LAST_COMMIT_MESSAGE" value="still" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -161,7 +170,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/comp336_42/AgainstPcCont.java</url>
-          <line>95</line>
+          <line>98</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>

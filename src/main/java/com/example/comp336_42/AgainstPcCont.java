@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Optional;
 
+import static com.example.comp336_42.MiniMaxAlgo.bestMoves;
+
 public class AgainstPcCont {
 
 
@@ -34,6 +36,7 @@ public class AgainstPcCont {
     static int oScore;
 
     static TextField txtFieldRoundsCounter;
+    @FXML
     static TextArea txtAreaRoundsCounter;
 
 
@@ -72,7 +75,7 @@ public class AgainstPcCont {
         for (int i = 0; i < arrCells.length; i++) {
             arrCells[i] = '.';
         }
-
+        txtAreaRoundsCounter=new TextArea("1/5");
         btnEasy.setDisable(true);
         btnMedium.setDisable(true);
         btnAdvanced.setDisable(true);
@@ -121,11 +124,11 @@ public class AgainstPcCont {
                         ////////////////////////////////
 
                         String choice = chooseWhoStart_popup();
-
+                        askNumberOfRounds();
                         if (choice.equals("X")) {//x is starting
-                            easyMode('x');
+                            randomMode('x');
                         } else if (choice.equals("O")) {//o is starting
-                            easyMode('o');
+                            randomMode('o');
                         }
                     });
 
@@ -139,7 +142,7 @@ public class AgainstPcCont {
 
 
                         String choice = chooseWhoStart_popup();
-
+                        askNumberOfRounds();
                         if (choice.equals("X")) {//x is starting
                             advancedMode('x');
                         } else if (choice.equals("O")) {//o is starting
@@ -154,7 +157,7 @@ public class AgainstPcCont {
         });
     }
 
-    public void easyMode(char X_O) {
+    public void randomMode(char X_O) {
 
         for (int i = 0; i < buttons.length; i++) {
             buttons[i].setText("");
@@ -167,7 +170,7 @@ public class AgainstPcCont {
             if (pc == 'x') {//if pc is starting
                 int r = (int) (Math.random() * 9);
                 buttons[r].setText("X");
-                buttons[r].setStyle("-fx-text-fill:  White; -fx-font-family: 'Bell MT'; -fx-font-size: 45; -fx-background-color: Transparent;-fx-border-width: 4;-fx-border-color:  #f8d320");
+                buttons[r].setStyle("-fx-font-size: 45;");
                 arrCells[r] = 'x';
 
                 for (int i = 0; i < buttons.length; i++) {
@@ -178,17 +181,22 @@ public class AgainstPcCont {
 
                             if (checkStatus() == 'n') {//and nobody has won yet
                                 System.out.println(checkStatus());
-                                currBtn.setStyle("-fx-text-fill:  #f8d320; -fx-font-family: 'Bell MT'; -fx-font-size: 45; -fx-background-color: Transparent;-fx-border-width: 4;-fx-border-color:  #f8d320");
+                                currBtn.setStyle("-fx-font-size: 45;");
                                 currBtn.setText(user == 'x' ? "X" : "O"); //assign the clicked button with X or O (depends on what's character is the player)
                                 arrCells[currI] = (user == 'x' ? 'x' : 'o');
                                 /////////////////////////////////////////////////////////Main Block
-                                if (checkStatus() != 'n') {//somebody won
-                                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                                    alert.setContentText("Player " + checkStatus() + " Wins!");
-                                    alert.showAndWait();
-                                } else {
+                                ////////////////////////////////////////////////
+                                char status = checkStatus();//Four cases: {n(still no winner)} or {t(tie(Draw))} or {x} or {o}
 
-                                    ///////////////////////////////////////////////
+
+                                if (status != 'n') {
+                                    try {
+                                        popup(status);
+                                    } catch (IOException e) {
+                                        throw new RuntimeException(e);
+                                    }
+
+                                } else {//status= 'n'   --> game is still going
                                     if (!boardIsFull()) {
                                         System.out.println("....");
 
@@ -201,12 +209,15 @@ public class AgainstPcCont {
                                         System.out.println(l);// l is the number of the block that pc has chosen
 
                                         buttons[l].setText(Character.toUpperCase(pc) + "");
-                                        buttons[l].setStyle("-fx-text-fill: White; -fx-font-family: 'Bell MT'; -fx-font-size: 45; -fx-background-color: Transparent;-fx-border-width: 4;-fx-border-color:  #f8d320");
+                                        buttons[l].setStyle("-fx-font-size: 45;");
                                         arrCells[l] = (user == 'x' ? 'o' : 'x');
-                                        if (checkStatus() != 'n') {
-                                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                                            alert.setContentText("Player " + checkStatus() + " Wins!");
-                                            alert.showAndWait();
+                                        status = checkStatus();//Four cases: {n(still no winner)} or {t(tie(Draw))} or {x} or {o}
+                                        if (status != 'n') {
+                                            try {
+                                                popup(status);
+                                            } catch (IOException e) {
+                                                throw new RuntimeException(e);
+                                            }
                                         }
                                     }
                                     ///////////////////////////////////////////////
@@ -228,21 +239,23 @@ public class AgainstPcCont {
 
 
                             if (checkStatus() == 'n') {//and nobody has won yet
-                                currBtn.setStyle("-fx-text-fill:  #f8d320; -fx-font-family: 'Bell MT'; -fx-font-size: 45; -fx-background-color: Transparent;-fx-border-width: 4;-fx-border-color:  #f8d320");
+                                currBtn.setStyle("-fx-font-size: 45;");
                                 currBtn.setText(user == 'x' ? "X" : "O"); //assign the clicked button with X or O (depends on what's character is the player)
                                 arrCells[currI] = (user == 'x' ? 'x' : 'o');
                                 /////////////////////////////////////////////////////////Main Block
-                                if (checkStatus() != 'n') {//somebody won
-                                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                                    alert.setContentText("Player " + checkStatus() + " Wins!");
-                                    alert.showAndWait();
-                                } else {
+
+                                char status = checkStatus();//Four cases: {n(still no winner)} or {t(tie(Draw))} or {x} or {o}
 
 
-                                    ///////////////////////////////////////////////
-                                    System.out.println("before boardIsFull");
+                                if (status != 'n') {
+                                    try {
+                                        popup(status);
+                                    } catch (IOException e) {
+                                        throw new RuntimeException(e);
+                                    }
+
+                                } else {//status= 'n'   --> game is still going
                                     if (!boardIsFull()) {
-                                        System.out.println("after boardIsFull");
                                         System.out.println("....");
 
                                         int randomMove = (int) (Math.random() * 9);
@@ -257,12 +270,15 @@ public class AgainstPcCont {
 
 //                                    buttons[l].setText((player == 'x' ? 'O' : 'X') + "");
                                         buttons[l].setText(Character.toUpperCase(pc) + "");
-                                        buttons[l].setStyle("-fx-text-fill: White; -fx-font-family: 'Bell MT'; -fx-font-size: 45; -fx-background-color: Transparent;-fx-border-width: 4;-fx-border-color:  #f8d320");
+                                        buttons[l].setStyle("-fx-font-size: 45;");
                                         arrCells[l] = (user == 'x' ? 'o' : 'x');
-                                        if (checkStatus() != 'n') {
-                                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                                            alert.setContentText("Player " + checkStatus() + " Wins!");
-                                            alert.showAndWait();
+                                        status = checkStatus();//Four cases: {n(still no winner)} or {t(tie(Draw))} or {x} or {o}
+                                        if (status != 'n') {
+                                            try {
+                                                popup(status);
+                                            } catch (IOException e) {
+                                                throw new RuntimeException(e);
+                                            }
                                         }
                                     }
                                     ///////////////////////////////////////////////
@@ -287,7 +303,7 @@ public class AgainstPcCont {
             } else if (user == 'x') {//if pc is starting
                 int r = (int) (Math.random() * 9);
                 buttons[r].setText("O");
-                buttons[r].setStyle("-fx-text-fill:  White; -fx-font-family: 'Bell MT'; -fx-font-size: 45; -fx-background-color: Transparent;-fx-border-width: 4;-fx-border-color:  #f8d320");
+                buttons[r].setStyle("-fx-font-size: 45;");
                 arrCells[r] = 'o';
             }
 
@@ -298,18 +314,22 @@ public class AgainstPcCont {
                     if (currBtn.getText().equals("")) {//if the clicked button is not already chosen
                         if (checkStatus() == 'n') {//and nobody has won yet
 
-                            currBtn.setStyle("-fx-text-fill:  #f8d320; -fx-font-family: 'Bell MT'; -fx-font-size: 45; -fx-background-color: Transparent;-fx-border-width: 4;-fx-border-color:  #f8d320");
+                            currBtn.setStyle("-fx-font-size: 45;");
                             currBtn.setText(user == 'x' ? "X" : "O"); //assign the clicked button with X or O (depends on what's character is the player)
                             arrCells[currI] = (user == 'x' ? 'x' : 'o');
                             /////////////////////////////////////////////////////////Main Block
-                            if (checkStatus() != 'n') {//somebody won
-                                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                                alert.setContentText("Player " + checkStatus() + " Wins!");
-                                alert.showAndWait();
-                            } else {
+                            ////////////////////////////////////////////////
+                            char status = checkStatus();//Four cases: {n(still no winner)} or {t(tie(Draw))} or {x} or {o}
 
 
-                                ///////////////////////////////////////////////
+                            if (status != 'n') {
+                                try {
+                                    popup(status);
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
+
+                            } else {//status= 'n'   --> game is still going
                                 if (!boardIsFull()) {
                                     System.out.println("....");
 
@@ -325,13 +345,16 @@ public class AgainstPcCont {
 
 //                                    buttons[l].setText((player == 'x' ? 'O' : 'X') + "");
                                     buttons[l].setText(Character.toUpperCase(pc) + "");
-                                    buttons[l].setStyle("-fx-text-fill: White; -fx-font-family: 'Bell MT'; -fx-font-size: 45; -fx-background-color: Transparent;-fx-border-width: 4;-fx-border-color:  #f8d320");
+                                    buttons[l].setStyle("-fx-font-size: 45;");
                                     arrCells[l] = (user == 'x' ? 'o' : 'x');
 
-                                    if (checkStatus() != 'n') {
-                                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                                        alert.setContentText("Player " + checkStatus() + " Wins!");
-                                        alert.showAndWait();
+                                    status = checkStatus();//Four cases: {n(still no winner)} or {t(tie(Draw))} or {x} or {o}
+                                    if (status != 'n') {
+                                        try {
+                                            popup(status);
+                                        } catch (IOException e) {
+                                            throw new RuntimeException(e);
+                                        }
                                     }
                                 }
                                 ///////////////////////////////////////////////
@@ -370,27 +393,35 @@ public class AgainstPcCont {
 
                         if (checkStatus() == 'n') {
 
-                            currBtn.setStyle("-fx-text-fill:  #f8d320; -fx-font-family: 'Bell MT'; -fx-font-size: 45; -fx-background-color: Transparent;-fx-border-width: 4;-fx-border-color:  #f8d320");
+                            currBtn.setStyle("-fx-font-size: 45;");
                             currBtn.setText(user == 'x' ? "X" : "O");
                             arrCells[currI] = (user == 'x' ? 'x' : 'o');
 
-                            if (checkStatus() != 'n') {
-                                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                                alert.setContentText("Player " + checkStatus() + " Wins!");
-                                alert.showAndWait();
-                            } else {
+                            ////////////////////////////////////////////////
+                            char status = checkStatus();//Four cases: {n(still no winner)} or {t(tie(Draw))} or {x} or {o}
 
 
+                            if (status != 'n') {
+                                try {
+                                    popup(status);
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
+
+                            } else {//status= 'n'   --> game is still going
                                 if (!boardIsFull()) {
                                     int l = MiniMaxAlgo.makeAMove(arrCells);
                                     System.out.println(l);
                                     buttons[l].setText((user == 'x' ? 'O' : 'X') + "");
-                                    buttons[l].setStyle("-fx-text-fill: White; -fx-font-family: 'Bell MT'; -fx-font-size: 45; -fx-background-color: Transparent;-fx-border-width: 4;-fx-border-color:  #f8d320");
+                                    buttons[l].setStyle("-fx-font-size: 45;");
                                     arrCells[l] = (user == 'x' ? 'o' : 'x');
-                                    if (checkStatus() != 'n') {
-                                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                                        alert.setContentText("Player " + checkStatus() + " Wins!");
-                                        alert.showAndWait();
+                                    status = checkStatus();//Four cases: {n(still no winner)} or {t(tie(Draw))} or {x} or {o}
+                                    if (status != 'n') {
+                                        try {
+                                            popup(status);
+                                        } catch (IOException e) {
+                                            throw new RuntimeException(e);
+                                        }
                                     }
                                 }
                             }
@@ -404,8 +435,9 @@ public class AgainstPcCont {
             System.out.println("PC is starting");
 
             int firstMove = MiniMaxAlgo.makeAMove(arrCells);
+            showBestMoves();
             buttons[firstMove].setText(Character.toUpperCase(pc) + "");
-            buttons[firstMove].setStyle("-fx-text-fill: White; -fx-font-family: 'Bell MT'; -fx-font-size: 45; -fx-background-color: Transparent;-fx-border-width: 4;-fx-border-color:  #f8d320");
+            buttons[firstMove].setStyle("-fx-font-size: 45;");
             arrCells[firstMove] = pc;
 
             //noinspection DuplicatedCode
@@ -418,7 +450,7 @@ public class AgainstPcCont {
                     if (currBtn.getText().equals("")) {
                         if (checkStatus() == 'n') {
                             ////////////////////////////////////////////////
-                            currBtn.setStyle("-fx-text-fill:  #f8d320; -fx-font-family: 'Bell MT'; -fx-font-size: 45; -fx-background-color: Transparent;-fx-border-width: 4;-fx-border-color:  #f8d320");
+                            currBtn.setStyle("-fx-font-size: 45;");
                             currBtn.setText(Character.toUpperCase(user) + "");
                             arrCells[currI] = user;
                             ////////////////////////////////////////////////
@@ -435,9 +467,10 @@ public class AgainstPcCont {
                             } else {//status= 'n'   --> game is still going
                                 if (!boardIsFull()) {
                                     int l = MiniMaxAlgo.makeAMove(arrCells);
+                                    showBestMoves();
                                     System.out.println(l);
                                     buttons[l].setText(Character.toUpperCase(pc) + "");
-                                    buttons[l].setStyle("-fx-text-fill: White; -fx-font-family: 'Bell MT'; -fx-font-size: 45; -fx-background-color: Transparent;-fx-border-width: 4;-fx-border-color:  #f8d320");
+                                    buttons[l].setStyle("-fx-font-size: 45;");
                                     arrCells[l] = pc;
 
                                     status = checkStatus();//Four cases: {n(still no winner)} or {t(tie(Draw))} or {x} or {o}
@@ -460,6 +493,35 @@ public class AgainstPcCont {
         }
 
 
+    }
+
+    private void showBestMoves() {
+        for (int i = 0; i < buttons.length; i++) {
+            if(buttons[i].getText().equals("")){
+                buttons[i].setText(bestMoves[i]+"");
+                buttons[i].setStyle("-fx-font-size: 45;");
+
+            }
+        }
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("do you want to continue?");
+        ButtonType btnContinue =new ButtonType("Continue...");
+
+        alert.getButtonTypes().setAll(btnContinue);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent()) {
+            if (result.get() == btnContinue) {
+                for (int i = 0; i < buttons.length; i++) {
+                    if(buttons[i].getText().equals("X")||buttons[i].getText().equals("O")){
+                        continue;
+                    }else {
+                        buttons[i].setText("");
+                    }
+                }
+            }
+
+        }
     }
 
     private void popup(char status) throws IOException {
@@ -536,6 +598,7 @@ public class AgainstPcCont {
                             round++;
                             txtAreaRoundsCounter.setText(round + "/" + numOf_rounds);
                             System.out.println("btnNextRound selected");
+                            Main.ShowBoard();
                         } else {//btnEnd
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("Main.fxml"));
                             Parent root = loader.load();
@@ -622,7 +685,7 @@ public class AgainstPcCont {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Choose Player");
         alert.setHeaderText("Who should start?");
-        alert.setContentText("Choose your option.");
+//        alert.setContentText("Choose your option.");
         ButtonType buttonTypeX = null;
         ButtonType buttonTypeO = null;
         if (user == 'x') {
@@ -646,4 +709,69 @@ public class AgainstPcCont {
 
         return null;
     }
+    private void askNumberOfRounds() {
+        TextInputDialog dialog = new TextInputDialog("5"); // Default value
+        dialog.setTitle("Game Settings");
+        dialog.setHeaderText("Number of Rounds");
+        dialog.setContentText("Please enter the number of rounds you want to play:");
+
+        Optional<String> result = dialog.showAndWait();
+
+        result.ifPresent(numberOfRounds -> {
+            try {
+                int rounds = Integer.parseInt(numberOfRounds);
+                numOf_rounds=rounds;
+                txtAreaRoundsCounter.setText(round + "/"+numOf_rounds);
+
+                System.out.println("Number of Rounds: " + numOf_rounds);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+            }
+        });
+    }
+
+    public void againstFrind() {
+        try {
+            Main.ShowBoard();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String choice = chooseWhoStart_popup();
+        askNumberOfRounds();
+
+        for (int i = 0; i < buttons.length; i++) {
+            buttons[i].setText("");
+        }
+        for (int i = 0; i < buttons.length; i++) {
+
+            Button temp = buttons[i];
+            temp.setOnAction(event -> {
+                if (temp.getText().equals("")) {
+
+                    if (user == 'x' && checkStatus() == 'n') {
+                        temp.setStyle("-fx-font-size: 45;");
+                        temp.setText("X");
+                        if (checkStatus() != 'n') {
+                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                            alert.setContentText("Player " + checkStatus() + " Wins!");
+                            alert.showAndWait();
+                        }
+                        user = 'o';
+                    } else if (user == 'o' && checkStatus() == 'n') {
+                        temp.setStyle("-fx-font-size: 45;");
+                        temp.setText("O");
+                        if (checkStatus() != 'n') {
+                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                            alert.setContentText("Player " + checkStatus() + " Wins!");
+                            alert.showAndWait();
+                        }
+                        user = 'x';
+                    }
+                }
+            });
+
+        }
+    }
+
 }

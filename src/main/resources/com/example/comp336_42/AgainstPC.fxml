@@ -10,31 +10,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="687.0" style="-fx-background-color: #212845;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.comp336_42.AgainstPcCont">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="687.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.comp336_42.AgainstPcCont">
    <children>
-      <Label layoutX="145.0" layoutY="464.0" prefHeight="72.0" prefWidth="398.0" text="Which Level Of Difficulty&#10;Do You Prefer?" textFill="WHITE">
+      <Label layoutX="145.0" layoutY="429.0" prefHeight="107.0" prefWidth="398.0" text="Which Level Of Difficulty&#10;Do You Prefer?">
          <font>
-            <Font name="Britannic Bold" size="36.0" />
+            <Font name="Arial Narrow" size="36.0" />
          </font>
       </Label>
-      <Button fx:id="btnEasy" layoutX="145.0" layoutY="563.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="398.0" style="-fx-background-color: #f8d320;" text="Easy">
+      <Button fx:id="btnEasy" layoutX="145.0" layoutY="565.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="398.0" text="Random Mode">
          <font>
             <Font name="Calibri Bold" size="28.0" />
          </font>
       </Button>
-      <Button fx:id="btnMedium" layoutX="144.0" layoutY="663.0" mnemonicParsing="false"  prefHeight="74.0" prefWidth="398.0" style="-fx-background-color: #f8d320;" text="Medium">
+      <Button fx:id="btnAdvanced" layoutX="144.0" layoutY="673.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="398.0" text="Player VS Computer">
          <font>
             <Font name="Calibri Bold" size="28.0" />
          </font>
       </Button>
-      <Button fx:id="btnAdvanced" layoutX="144.0" layoutY="762.0" mnemonicParsing="false"  prefHeight="74.0" prefWidth="398.0" style="-fx-background-color: #f8d320;" text="Expert">
+      <Label layoutX="144.0" layoutY="124.0" prefHeight="129.0" prefWidth="398.0" text="What Do You Like To Be?&#10;X or O?">
          <font>
-            <Font name="Calibri Bold" size="28.0" />
-         </font>
-      </Button>
-      <Label layoutX="144.0" layoutY="165.0" prefHeight="88.0" prefWidth="398.0" text="What Do You Like To Be?&#10;X or O?" textFill="WHITE">
-         <font>
-            <Font name="Britannic Bold" size="36.0" />
+            <Font size="36.0" />
          </font>
          <padding>
             <Insets bottom="20.0" />
@@ -78,12 +73,15 @@
 <!--         </toggleGroup>-->
 <!--      </RadioButton>-->
 
-      <RadioButton fx:id="xSelected" layoutX="135.0" layoutY="291.0" mnemonicParsing="false" text="Play As X" textFill="WHITE" toggleGroup="$userChoiceToggleGroup">
+      <RadioButton layoutX="137.0" layoutY="280.0" mnemonicParsing="false" text="Play As X" fx:id="xSelected">
          <font>
             <Font size="24.0" />
          </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="userChoiceToggleGroup" />
+         </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="oSelected" layoutX="135.0" layoutY="326.0" mnemonicParsing="false" text="Play As O" textFill="WHITE" toggleGroup="$userChoiceToggleGroup">
+      <RadioButton fx:id="oSelected" layoutX="304.0" layoutY="280.0" mnemonicParsing="false" text="Play As O" toggleGroup="$userChoiceToggleGroup">
          <font>
             <Font size="24.0" />
          </font>

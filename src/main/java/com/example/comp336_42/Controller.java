@@ -156,55 +156,6 @@ public class Controller implements Initializable {
 		return false;
 	}
 
-	public void OpenGameExpert() {
-
-		try {
-			Main.ShowBoard();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		if (player=='o') {
-			int r = (int) (Math.random()*8);
-			buttons[r].setText("X");
-			buttons[r].setStyle("-fx-text-fill:  White; -fx-font-family: 'Bell MT'; -fx-font-size: 45; -fx-background-color: Transparent;-fx-border-width: 4;-fx-border-color:  #f8d320");
-
-		}
-		for (int i = 0; i < buttons.length; i++) {
-			buttons[i].setText("");
-		}
-		for (int i = 0; i < buttons.length; i++) {
-
-			Button temp = buttons[i];
-			temp.setOnAction(event -> {
-				if (temp.getText().equals("")) {
-					if ( Won(buttons) == 'n') {
-						temp.setStyle("-fx-text-fill:  #f8d320; -fx-font-family: 'Bell MT'; -fx-font-size: 45; -fx-background-color: Transparent;-fx-border-width: 4;-fx-border-color:  #f8d320");
-						temp.setText(player == 'x' ? "X": "O");
-						if (Won(buttons) != 'n') {
-							Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-							alert.setContentText("Player " + Won(buttons) + " Wins!");
-							alert.showAndWait();
-						} else {
-							if (GameNotFinished()) {
-//								ComputerPlay.MODE = "Expert";
-								int l = MiniMaxAlgo.makeAMove(getBoard());
-								System.out.println(l);
-								buttons[l].setText((player == 'x' ? 'O' : 'X') + "");
-								buttons[l].setStyle("-fx-text-fill: White; -fx-font-family: 'Bell MT'; -fx-font-size: 45; -fx-background-color: Transparent;-fx-border-width: 4;-fx-border-color:  #f8d320");
-								if (Won(buttons) != 'n') {
-									Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-									alert.setContentText("Player " + Won(buttons) + " Wins!");
-									alert.showAndWait();
-								}
-							}
-						}
-					}
-				}
-			});
-		}
-	}
-
-
 
 	public void OnStartMulti() {
 		try {

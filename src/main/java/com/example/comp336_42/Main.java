@@ -26,7 +26,7 @@ public class Main extends Application {
 
 
     public static void ShowBoard() throws IOException {
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("boardGamePlay.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("Board.fxml"));
         Parent root = loader.load();
         primaryStage.setScene(new Scene(root));
     }
