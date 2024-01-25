@@ -1,0 +1,47 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+
+<!--&lt;!&ndash;<?import com.gluonhq.charm.glisten.control.ToggleButtonGroup?>&ndash;&gt;-->
+<!--<?import javafx.geometry.Insets?>-->
+<!--<?import javafx.scene.control.Button?>-->
+<!--<?import javafx.scene.control.Label?>-->
+<!--<?import javafx.scene.control.RadioButton?>-->
+<!--<?import javafx.scene.layout.AnchorPane?>-->
+<!--<?import javafx.scene.text.Font?>-->
+
+<!--<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="711.0" prefWidth="687.0" stylesheets="@../com/example/comp336_42/myStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.comp336_42.Controller">-->
+<!--	<children>-->
+<!--		<Label layoutX="187.0" layoutY="138.0" prefHeight="74.0" prefWidth="319.0" text="Would you like to&#10;be X or O?" textFill="WHITE">-->
+<!--			<font>-->
+<!--				<Font name="Britannic Bold" size="36.0" />-->
+<!--			</font>-->
+<!--		</Label>-->
+<!--		<Button layoutX="184.0" layoutY="308.0" mnemonicParsing="false" onAction="#WhoStartX" prefHeight="74.0" prefWidth="319.0" style="-fx-background-color: #f8d320;" text="Play as X">-->
+<!--			<font>-->
+<!--				<Font name="Calibri Bold" size="28.0" />-->
+<!--			</font>-->
+<!--		</Button>-->
+<!--		<Button layoutX="183.0" layoutY="408.0" mnemonicParsing="false" onAction="#WhoStartO" prefHeight="74.0" prefWidth="319.0" style="-fx-background-color: #f8d320;" text="Play as O">-->
+<!--			<font>-->
+<!--				<Font name="Calibri Bold" size="28.0" />-->
+<!--			</font>-->
+<!--		</Button>-->
+<!--&lt;!&ndash;      <ToggleButtonGroup layoutX="187.0" layoutY="212.0" prefHeight="35.0" prefWidth="319.0" selectionType="SINGLE">&ndash;&gt;-->
+<!--&lt;!&ndash;          <toggles>&ndash;&gt;-->
+<!--&lt;!&ndash;            <RadioButton mnemonicParsing="false" text="Play As X" textFill="WHITE">&ndash;&gt;-->
+<!--&lt;!&ndash;               <font>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <Font size="24.0" />&ndash;&gt;-->
+<!--&lt;!&ndash;               </font></RadioButton>&ndash;&gt;-->
+<!--&lt;!&ndash;            <RadioButton mnemonicParsing="false" text="Play As O" textFill="WHITE">&ndash;&gt;-->
+<!--&lt;!&ndash;               <padding>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <Insets left="20.0" />&ndash;&gt;-->
+<!--&lt;!&ndash;               </padding>&ndash;&gt;-->
+<!--&lt;!&ndash;               <font>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <Font size="24.0" />&ndash;&gt;-->
+<!--&lt;!&ndash;               </font>&ndash;&gt;-->
+<!--&lt;!&ndash;            </RadioButton>&ndash;&gt;-->
+<!--&lt;!&ndash;          </toggles>&ndash;&gt;-->
+<!--&lt;!&ndash;      </ToggleButtonGroup>&ndash;&gt;-->
+
+<!--	</children>-->
+<!--</AnchorPane>-->
+<!---->

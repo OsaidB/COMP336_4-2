@@ -15,7 +15,7 @@ public class MainCont {
     public void againstPC_onAction() {
         try {
 
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("AgainstPC_2.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("AgainstPC.fxml"));
             //to choose who play first
             Parent root = loader.load();
            Scene scene= new Scene(root);
@@ -40,7 +40,7 @@ public class MainCont {
     public void againstFriend_onAction() {
         try {
 
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("AgainstFriend_1.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("AgainstFriend.fxml"));
             //to choose who's X and who's O
             //and to assign the name of each of them
             Parent root = loader.load();

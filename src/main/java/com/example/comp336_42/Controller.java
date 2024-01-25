@@ -1,8 +1,5 @@
 package com.example.comp336_42;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
@@ -93,8 +90,8 @@ public class Controller implements Initializable {
 						} else {
 							if (GameNotFinished()) {
 								System.out.println("....");
-								ComputerPlay.MODE = "Expert";
-								int l = ComputerPlay.MakeMove(getBoard());
+//								ComputerPlay.MODE = "Expert";
+								int l = MiniMaxAlgo.makeAMove(getBoard());
 								System.out.println(l);
 								buttons[l].setText((player == 'x' ? 'O' : 'X') + "");
 								buttons[l].setStyle("-fx-text-fill: White; -fx-font-family: 'Bell MT'; -fx-font-size: 45; -fx-background-color: Transparent;-fx-border-width: 4;-fx-border-color:  #f8d320");
@@ -189,8 +186,8 @@ public class Controller implements Initializable {
 							alert.showAndWait();
 						} else {
 							if (GameNotFinished()) {
-								ComputerPlay.MODE = "Expert";
-								int l = ComputerPlay.MakeMove(getBoard());
+//								ComputerPlay.MODE = "Expert";
+								int l = MiniMaxAlgo.makeAMove(getBoard());
 								System.out.println(l);
 								buttons[l].setText((player == 'x' ? 'O' : 'X') + "");
 								buttons[l].setStyle("-fx-text-fill: White; -fx-font-family: 'Bell MT'; -fx-font-size: 45; -fx-background-color: Transparent;-fx-border-width: 4;-fx-border-color:  #f8d320");
